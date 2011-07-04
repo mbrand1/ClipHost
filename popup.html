@@ -1,0 +1,51 @@
+<html>
+<head>
+<script>
+// Get the location URL from the currently selected tab
+function startup() {
+    chrome.tabs.getSelected(null, function(tab) {
+        clipHost(tab.url);
+    });
+    return true;
+}
+
+// Clips the hostname from input 'u' and updates popup
+function clipHost(u) {
+    var tmphost = '';
+    if (u.indexOf("http") === 0) {
+        tmphost = u.replace(/^https?:\/\//,'');
+        slashidx = tmphost.indexOf("/");
+        if (slashidx > 0) { 
+            tmphost = tmphost.substring(0, slashidx);
+        }
+    }
+    
+    // holds the hostname in a dummy "form field" so we can copy from it
+    urlid = document.getElementById("urlid");
+    
+    if (tmphost && (tmphost.indexOf(":") == -1)) {
+        urlid.style.display = "block";
+        urlid.value = tmphost;
+        urlid.focus();
+        urlid.select();
+        document.execCommand("Copy");
+        document.getElementById("results").innerText = tmphost + ' copied to clipboard.';    
+    } else {
+        document.getElementById("results").innerText = 'Cannot copy location. Clipboard unchanged.';
+    }
+    urlid.style.display = "none";
+}
+</script>
+</head>
+<body onload="startup()" style="display: block;
+                                width: 300px;
+                                height: 20px;
+                                text-align: center;
+                                background-color:#FFFFFF;
+                                color:#000000;
+                                font-size:small;
+                                font-family:verdana,arial;">
+<input style="display: none" type="text" id="urlid" name="urlname" value=""></input>
+<span style="color: #0000FF;" id="results"></span>
+</body>
+</html>

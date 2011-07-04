@@ -1,0 +1,6 @@
+
+0.2 - 2011-07-04 (meb): look at tab.url instead of window.location.href which isn't reliable
+
+
+0.1 - 2011-07-03 (meb):  Got it working.  Added a decent icon.
+

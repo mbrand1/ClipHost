@@ -1,0 +1,10 @@
+This Chrome extension extracts the raw hostname from the current tab's address bar.  It strips off the leading http://
+and any trailing path information.  Use this extension when you want to copy-paste just the host into a terminal window
+to do a hostname lookup or traceroute.    Normally if you select just the hostname inside Chrome's location bar, it tacks
+on the leading http://.  This extension counteracts that.
+
+
+ClipHost icon credit:
+
+Shiny Icon Set
+by Double-J Design (http://www.doublejdesign.co.uk)
