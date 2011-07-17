@@ -1,6 +1,6 @@
 {
     "name": "ClipHost",
-    "version": "0.2",
+    "version": "0.3",
     "icons": {  "16": "icons/host16.png",
                 "48": "icons/host48.png",
                 "128": "icons/host128.png"

@@ -20,8 +20,11 @@ function clipHost(u) {
         }
     }
     
-    // holds the hostname in a dummy "form field" so we can copy from it
+    // urlid - input field set to hostname where copy action is performed
+    // urlid2 - input field set to hostname and displayed to user. if user clicks into urlid2, field
+    //          will be selected (useful for unix users to get hostname into Selected clipboard)
     urlid = document.getElementById("urlid");
+    urlid2 = document.getElementById("urlid2");
     
     if (tmphost && (tmphost.indexOf(":") == -1)) {
         urlid.style.display = "block";
@@ -29,23 +32,35 @@ function clipHost(u) {
         urlid.focus();
         urlid.select();
         document.execCommand("Copy");
-        document.getElementById("results").innerText = tmphost + ' copied to clipboard.';    
+        document.getElementById("results").innerText = 'copied to clipboard.';
+        urlid2.value = tmphost;
     } else {
         document.getElementById("results").innerText = 'Cannot copy location. Clipboard unchanged.';
+        urlid2.style.display = "none";
     }
     urlid.style.display = "none";
 }
 </script>
+<style type="text/css">
+body {
+    display: block;
+    width: 300px;
+    height: 20px;
+    text-align: center;
+    background-color:#FFFFFF;
+    color:#000000;
+    font-size:small;
+    font-family:verdana,arial;
+}
+.input {
+    text-align: center;
+    border: 1px solid #006;
+}
+</style>
 </head>
-<body onload="startup()" style="display: block;
-                                width: 300px;
-                                height: 20px;
-                                text-align: center;
-                                background-color:#FFFFFF;
-                                color:#000000;
-                                font-size:small;
-                                font-family:verdana,arial;">
+<body onload="startup();">
 <input style="display: none" type="text" id="urlid" name="urlname" value=""></input>
+<input onclick="this.select();" type="text" class="input" id="urlid2" name="urlname2" title="click to copy into Selected Clipboard (unix-only)" value=""></input>
 <span style="color: #0000FF;" id="results"></span>
 </body>
 </html>

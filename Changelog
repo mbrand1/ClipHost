@@ -1,6 +1,8 @@
+0.3   2011-07-17 (meb): Put displayed hostname into an input window to allow selection by clicking.  This allows the hostname
+                        to be copied into Unix's "selected" clipboard (copying into the regular clipboard still happens 
+			automatically).
 
 0.2 - 2011-07-04 (meb): look at tab.url instead of window.location.href which isn't reliable
-
 
 0.1 - 2011-07-03 (meb):  Got it working.  Added a decent icon.
 
