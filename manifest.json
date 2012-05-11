@@ -1,6 +1,6 @@
 {
     "name": "ClipHost",
-    "version": "0.3",
+    "version": "0.4",
     "icons": {  "16": "icons/host16.png",
                 "48": "icons/host48.png",
                 "128": "icons/host128.png"
@@ -11,6 +11,7 @@
         "popup": "popup.html",
         "default_icon": "icons/host48.png"
     },
+    "options_page": "options.html",
     "permissions": [
         "http://*/*",
         "https://*/*",
