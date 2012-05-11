@@ -5,6 +5,8 @@ on the leading http://.  This extension counteracts that.
 
 2011-07-16 (meb): Now works with Unix's Selected Clipboard!  Just click the displayed hostname for middle-button pasting goodness!
 
+2012-05-10 (meb): Displayed hostname will disappear after a time (controllable from options).
+
 ClipHost icon credit:
 
 Shiny Icon Set

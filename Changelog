@@ -1,4 +1,5 @@
-0.4   2012-05-06 (meb): Made popup.html close after a time. Put javascript into popup.js.
+0.4   2012-05-06 (meb): Made popup.html close after a time and made this controllable from options.html.
+                        Separated javascript into popup.js & options.js.
 
 0.3   2011-07-17 (meb): Put displayed hostname into an input window to allow selection by clicking.  This allows the hostname
                         to be copied into Unix's "selected" clipboard (copying into the regular clipboard still happens 
