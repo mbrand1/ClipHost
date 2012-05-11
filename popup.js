@@ -1,7 +1,14 @@
 // Get the location URL from the currently selected tab
 function startup() {
     chrome.tabs.getSelected(null, function(tab) {
-	setTimeout("window.close()", 1500);
+        var autoclose = localStorage["autoclose"];
+        autoclose = (autoclose == undefined) ? "yes" : autoclose; // default "yes"
+
+        if (autoclose == "yes") {
+          var tsecs = localStorage["secsclose"];
+          tsecs = (tsecs == undefined) ? 1500 : tsecs;
+          setTimeout("window.close()", tsecs);
+        }
         clipHost(tab.url);
     });
     return true;

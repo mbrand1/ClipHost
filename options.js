@@ -5,10 +5,10 @@ function save() {
   var secsclose = secsclose_select.children[secsclose_select.selectedIndex].value;
   
   if (autoclose.checked) {
-    localStorage["autoclose"] = 1;
+    localStorage["autoclose"] = "yes";
     localStorage["secsclose"] = secsclose;
   } else {
-     localStorage["autoclose"] = 0;
+     localStorage["autoclose"] = "no";
   }
 
   // Update status to let user know options were saved.
@@ -21,10 +21,10 @@ function save() {
 
 // Restores autoclose state to saved value from localStorage.
 function restore() {
-  var isAutoClosed = localStorage["autoclose"];
+  var ynAutoClosed = (localStorage["autoclose"] == undefined) ? "yes" : localStorage["autoclose"];
   var autoclose = document.getElementById("autoclose");  
   var secsclose_select = document.getElementById("secsclose");  
-  if (isAutoClosed == 1) {
+  if (ynAutoClosed == "yes") {
     autoclose.checked = true;
     var secs = localStorage["secsclose"];
     if (secs) {
