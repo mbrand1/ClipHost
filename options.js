@@ -1,39 +1,40 @@
-// Saves options to localStorage.
-function save() {
-  var autoclose = document.getElementById("autoclose");
-  var secsclose_select = document.getElementById("secsclose");
-  var secsclose = secsclose_select.children[secsclose_select.selectedIndex].value;
-  
-  if (autoclose.checked) {
-    localStorage["autoclose"] = "yes";
-    localStorage["secsclose"] = secsclose;
-  } else {
-     localStorage["autoclose"] = "no";
-  }
+// Saves options to chrome.storage
+async function save() {
+  const autoclose = document.getElementById("autoclose");
+  const secsclose_select = document.getElementById("secsclose");
+  const secsclose = secsclose_select.children[secsclose_select.selectedIndex].value;
+
+  await chrome.storage.sync.set({
+    autoclose: autoclose.checked ? "yes" : "no",
+    secsclose: secsclose
+  });
 
   // Update status to let user know options were saved.
-  var status = document.getElementById("status");
+  const status = document.getElementById("status");
   status.innerHTML = "Options Saved.";
-  setTimeout(function() {
+  setTimeout(() => {
     status.innerHTML = "";
   }, 750);
 }
 
-// Restores autoclose state to saved value from localStorage.
-function restore() {
-  var ynAutoClosed = (localStorage["autoclose"] == undefined) ? "yes" : localStorage["autoclose"];
-  var autoclose = document.getElementById("autoclose");  
-  var secsclose_select = document.getElementById("secsclose");  
-  if (ynAutoClosed == "yes") {
+// Restores autoclose state to saved value from chrome.storage
+async function restore() {
+  const result = await chrome.storage.sync.get({
+    autoclose: "yes",
+    secsclose: "1500"
+  });
+
+  const autoclose = document.getElementById("autoclose");
+  const secsclose_select = document.getElementById("secsclose");
+
+  if (result.autoclose === "yes") {
     autoclose.checked = true;
-    var secs = localStorage["secsclose"];
-    if (secs) {
-      for (var i = 0; i < secsclose_select.children.length; i++) {
-        var kid = secsclose_select.children[i];
-        if (kid.value == secs) {
-          kid.selected = "true";
-          break;
-        }
+    const secs = result.secsclose;
+    for (let i = 0; i < secsclose_select.children.length; i++) {
+      const kid = secsclose_select.children[i];
+      if (kid.value === secs) {
+        kid.selected = "true";
+        break;
       }
     }
   } else {
@@ -44,7 +45,17 @@ function restore() {
 
 // Disable secsclose if autoclose unchecked
 function updateSecsDisabled() {
-  var secsclose_select = document.getElementById("secsclose");
-  var autoclose = document.getElementById("autoclose");
+  const secsclose_select = document.getElementById("secsclose");
+  const autoclose = document.getElementById("autoclose");
   secsclose_select.disabled = !autoclose.checked;
 }
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  // Add event listeners
+  document.getElementById("saveButton").addEventListener('click', save);
+  document.getElementById("autoclose").addEventListener('change', updateSecsDisabled);
+
+  // Restore saved settings
+  restore();
+});

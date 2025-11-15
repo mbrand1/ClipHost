@@ -1,3 +1,12 @@
+1.0   2025-11-15: Updated to Manifest V3 for modern Chrome compatibility
+                        - Migrated from Manifest V2 to V3
+                        - Replaced deprecated chrome.tabs.getSelected() with chrome.tabs.query()
+                        - Replaced localStorage with chrome.storage.sync API
+                        - Replaced deprecated execCommand with modern Clipboard API
+                        - Removed inline event handlers for CSP compliance
+                        - Updated permissions to use activeTab, storage, and clipboardWrite
+                        - Modernized JavaScript (async/await, const/let, arrow functions)
+
 0.4   2012-05-06 (meb): Made popup.html close after a time and made this controllable from options.html.
                         Separated javascript into popup.js & options.js.
 

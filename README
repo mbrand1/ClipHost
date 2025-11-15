@@ -1,11 +1,27 @@
-This Chrome extension extracts the raw hostname from the current tab's address bar.  It strips off the leading http://
-and any trailing path information.  Use this extension when you want to copy-paste just the host into a terminal window
-to do a hostname lookup or traceroute.    Normally if you select just the hostname inside Chrome's location bar, it tacks
-on the leading http://.  This extension counteracts that.
+ClipHost - Chrome Extension
+============================
 
-2011-07-16 (meb): Now works with Unix's Selected Clipboard!  Just click the displayed hostname for middle-button pasting goodness!
+This Chrome extension extracts the raw hostname from the current tab's address bar. It strips off the leading http://
+and any trailing path information. Use this extension when you want to copy-paste just the host into a terminal window
+to do a hostname lookup or traceroute. Normally if you select just the hostname inside Chrome's location bar, it tacks
+on the leading http://. This extension counteracts that.
 
-2012-05-10 (meb): Displayed hostname will disappear after a time (controllable from options).
+Features:
+- Automatically copies hostname to clipboard
+- Works with Unix's Selected Clipboard (click the displayed hostname for middle-button pasting)
+- Auto-close popup after configurable time (controllable from options)
+
+Version 1.0 (2025-11-15):
+Updated to Manifest V3 for compatibility with modern Chrome browsers. This version uses the latest Chrome extension
+APIs including chrome.storage, modern Clipboard API, and follows current security best practices.
+
+Requirements:
+- Chrome browser with Manifest V3 support (Chrome 88+)
+
+Installation:
+1. Open Chrome and navigate to chrome://extensions/
+2. Enable "Developer mode" in the top right
+3. Click "Load unpacked" and select this directory
 
 ClipHost icon credit:
 
